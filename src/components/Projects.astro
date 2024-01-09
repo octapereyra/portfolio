@@ -1,0 +1,63 @@
+---
+import Angular from './icons/Angular.astro'
+import NodeJS from './icons/NodeJS.astro'
+import Tailwind from './icons/Tailwind.astro'
+
+const TAGS = {
+  TAILWIND: {
+    name: 'Tailwind CSS',
+    class: 'bg-[#003159] text-white',
+    icon: Tailwind,
+  },
+  ANGULAR: {
+    name: 'Angular',
+    class: 'bg-black text-white',
+    icon: Angular,
+  },
+  NODE: {
+    name: 'Node JS',
+    class: 'bg-[#1A6717] text-white',
+    icon: NodeJS,
+  },
+}
+const PROJECTS = [
+  {
+    title: 'Poncho Home & Stay',
+    description:
+      'Proyecto fullstack realizado en equipo, como trabajo práctico integrador para la materia "Desarrollo de Software" de la carrera de Ingeniería en Sistemas. Desarrollado con Angular 16 y Tailwind CSS en el frontend, y Node JS con Express en el backend. ',
+    link: 'https://poncho-home-and-stay.vercel.app/',
+    github: 'https://github.com/francoax/dsw-app',
+    image: '/projects/poncho.png',
+    tags: [TAGS.ANGULAR, TAGS.TAILWIND, TAGS.NODE],
+  },
+]
+---
+
+{
+  PROJECTS.map(({ image, title, description, tags }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+        {title}
+      </h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 border border-white/10`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        loading="lazy"
+        class="rounded shadow-2xl shadow-white/10 aspect-video"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${image}`}
+      />
+    </article>
+  ))
+}
